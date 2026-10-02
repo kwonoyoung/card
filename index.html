@@ -50,6 +50,12 @@ ul{margin:3px 0 0;padding-left:18px}
 .yes{border:1.5px solid #58aaf0;background:#eff8ff}.no{border:1.5px solid #aaa;background:#f4f4f4;color:#555}
 .law{margin-top:5px;border:1.5px solid #d9ad1d;background:#fff7bd;border-radius:10px;padding:7px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.example-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.example-box{border:1.5px solid #69b0ef;border-radius:14px;background:linear-gradient(180deg,#f7fbff,#eef7ff);padding:9px}
+.example-box h2{margin:0 0 6px}
+.period{margin-top:7px;border-radius:11px;padding:8px 9px;background:#083c82;color:#fff;font-weight:900;text-align:center;font-size:clamp(13px,2vw,17px)}
+.rule{margin-top:6px;border-radius:10px;padding:7px 8px;background:#fff8c9;border:1px solid #e2b93e;font-size:clamp(11.5px,1.7vw,14px);line-height:1.4}
+.calc{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;border:1.5px solid #79baf3;border-radius:13px;background:#fff;padding:8px 9px}
 .good,.bad{border-radius:12px;padding:8px;font-size:clamp(12px,1.8vw,15px);line-height:1.4}
 .good{border:1.5px solid #42ad66;background:#effff4}.bad{border:1.5px solid #ef6767;background:#fff2f2}
 .key{margin-top:auto;border:1.5px solid #dba91f;border-radius:14px;background:linear-gradient(90deg,#fff9ce,#fff1a8);
@@ -68,7 +74,7 @@ ul{margin:3px 0 0;padding-left:18px}
  .hero h1{font-size:clamp(22px,7.1vw,36px)}.row{gap:6px}.num{width:29px;height:29px;font-size:12px}
  h2{font-size:clamp(14px,4.4vw,19px)}p,li,small{font-size:clamp(11.2px,3.35vw,14px);line-height:1.35}
  .step{padding:5px 6px}.branch{grid-template-columns:1fr .78fr;gap:5px}.yes,.no{padding:6px;font-size:10.8px}
- .law{padding:5px}.key{padding:7px 8px}.nav{width:36px;height:36px;font-size:22px}.prev{left:2px}.next{right:2px}
+ .law{padding:5px}.key{padding:7px 8px}.example-grid{grid-template-columns:1fr}.example-box{padding:7px}.period{padding:6px 7px}.rule{padding:6px 7px}.nav{width:36px;height:36px;font-size:22px}.prev{left:2px}.next{right:2px}
  .bottom{height:42px}.dot{width:9px;height:9px}.label{display:none}
 }
 @media(max-height:760px){
@@ -82,7 +88,7 @@ ul{margin:3px 0 0;padding-left:18px}
 <div class="app">
   <header class="topbar">
     <div class="brand">호봉정정 · 채무부존재확인 소송 카드뉴스</div>
-    <div class="counter" id="counter">전체 구조 · 1 / 9</div>
+    <div class="counter" id="counter">전체 구조 · 1 / 10</div>
   </header>
 
   <main class="viewer" id="viewer">
@@ -176,7 +182,34 @@ ul{margin:3px 0 0;padding-left:18px}
 
       <article class="slide">
         <div class="card">
-          <div class="hero"><span class="tag">카드 7</span><h1>한눈에 연결하는 <em>핵심 4단계</em></h1></div>
+          <div class="hero"><span class="tag">카드 7</span><h1>환수 통지일에 따라 달라지는 <em>5년 환수기간</em></h1><p>60개월 환수기간 계산 예시</p></div>
+
+          <div class="example-grid">
+            <section class="example-box">
+              <h2>예시 1 · 2026. 3. 16. 환수 통지</h2>
+              <p><span class="hl">2026년 3월 16일 호봉정정 처분공문</span>에 따라 같은 날 당사자에게 환수 통지를 한 경우입니다.</p>
+              <div class="rule"><b>적용 기준</b><br>• 매월 <b>1일~16일</b> 청구 시 <b>전월부터 역으로 60개월</b> 환수<br>• <b>당월 청구분은 미포함</b></div>
+              <div class="period">환수기간<br>2021. 3. ~ 2026. 2.<br><small>총 60개월</small></div>
+            </section>
+
+            <section class="example-box">
+              <h2>예시 2 · 2026. 3. 25. 환수 통지</h2>
+              <p><span class="hl">2026년 3월 25일 호봉정정 처분공문</span>에 따라 같은 날 당사자에게 환수 통지를 한 경우입니다.</p>
+              <div class="rule"><b>적용 기준</b><br>• 매월 <b>17일~31일</b> 청구 시 <b>당월부터 역으로 60개월</b> 환수<br>• <b>당월 청구분 포함</b></div>
+              <div class="period">환수기간<br>2021. 4. ~ 2026. 3.<br><small>총 60개월</small></div>
+            </section>
+          </div>
+
+          <div class="calc"><span class="num">①</span><div><h2>1일~16일 통지</h2><p><b>당월 제외</b> → 전월을 1개월째로 계산 → 전월부터 뒤로 60개월</p></div></div>
+          <div class="calc"><span class="num">②</span><div><h2>17일~31일 통지</h2><p><b>당월 포함</b> → 당월을 1개월째로 계산 → 당월부터 뒤로 60개월</p></div></div>
+
+          <div class="key">💡 <strong>같은 2026년 3월 환수 통지라도</strong> 3월 16일이면 <strong>2021. 3. ~ 2026. 2.</strong>, 3월 25일이면 <strong>2021. 4. ~ 2026. 3.</strong>을 60개월 환수기간으로 계산합니다.</div>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="card">
+          <div class="hero"><span class="tag">카드 8</span><h1>한눈에 연결하는 <em>핵심 4단계</em></h1></div>
           <div class="flow">
             <div class="step"><span class="num">1</span><div><b>중대·명백한 행정 과실</b><small>기초자료가 있었고 규정도 명확한데 담당자가 잘못 처리</small></div></div>
             <div class="arrow">▼</div>
@@ -193,7 +226,7 @@ ul{margin:3px 0 0;padding-left:18px}
 
       <article class="slide">
         <div class="card">
-          <div class="hero"><span class="tag">카드 8</span><h1><em>핵심 요약</em></h1><p>마지막 정리</p></div>
+          <div class="hero"><span class="tag">카드 9</span><h1><em>핵심 요약</em></h1><p>마지막 정리</p></div>
           <div class="section row"><span class="num">1</span><div><p>채무부존재확인 소송은 <span class="hl">“내가 잘못이 없으니 다 안 내겠다”는 소송이 아닙니다.</span></p></div></div>
           <div class="section row"><span class="num">2</span><div><p>핵심은 법적으로 <span class="hl">실제 남는 채무 범위가 어디까지인지 확인</span>하는 것입니다.</p></div></div>
           <div class="section row"><span class="num">3</span><div><p>중대·명백한 하자가 인정되어 당연무효가 되면, <span class="hl">지방재정법 제82조의 5년 소멸시효가 각 급여 지급일마다 따로 적용</span>됩니다.</p></div></div>
