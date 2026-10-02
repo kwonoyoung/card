@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b4da2">
+<title>호봉정정과 채무부존재확인 소송 카드뉴스</title>
+<style>
+:root{--navy:#083b7d;--blue:#0d63d9;--sky:#eef7ff;--line:#d9e9fb;--text:#10243e}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif;background:linear-gradient(180deg,#eef7ff 0,#f7fbff 55%,#edf6ff 100%);color:var(--text)}
+body{display:flex;justify-content:center}
+.wrap{width:min(100%,980px);min-height:100vh;padding:18px 14px 24px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 auto 14px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px rgba(25,75,130,.08)}
+.brand{font-weight:800;letter-spacing:-.03em;color:var(--navy);font-size:clamp(15px,2.4vw,21px)}
+.count{font-weight:800;color:#fff;background:var(--blue);padding:7px 12px;border-radius:999px;white-space:nowrap}
+.viewer{position:relative;margin:auto;max-width:760px;background:#fff;border-radius:24px;box-shadow:0 16px 50px rgba(20,67,120,.15);overflow:hidden;touch-action:pan-y}
+.stage{position:relative;aspect-ratio:1122/1402;background:#f5f9ff;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;transform:translateX(24px);transition:opacity .28s ease,transform .28s ease;pointer-events:none}
+.slide.active{opacity:1;transform:none;pointer-events:auto}
+.slide img{display:block;width:100%;height:100%;object-fit:contain;background:#fff}
+.navbtn{position:absolute;top:50%;z-index:5;transform:translateY(-50%);width:52px;height:52px;border:0;border-radius:50%;background:rgba(8,59,125,.88);color:#fff;font-size:30px;line-height:1;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.16);display:grid;place-items:center}
+.navbtn:hover{background:#0d63d9}
+.navbtn:focus-visible{outline:4px solid #ffd84a;outline-offset:2px}
+.prev{left:12px}.next{right:12px}
+.controls{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 12px 16px;background:#fff;border-top:1px solid #eef3f8}
+.dots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.dot{width:12px;height:12px;padding:0;border:0;border-radius:50%;background:#cbdced;cursor:pointer}
+.dot.active{background:var(--blue);transform:scale(1.2)}
+.help{text-align:center;color:#526b86;font-size:13px;margin:12px auto 0;line-height:1.6}
+footer{text-align:center;color:#6d8198;font-size:12px;margin-top:14px}
+@media (max-width:640px){
+ .wrap{padding:8px 0 18px}
+ header{margin:0 8px 8px;border-radius:14px;padding:9px 10px}
+ .viewer{border-radius:0;box-shadow:none;max-width:none}
+ .navbtn{width:42px;height:42px;font-size:26px;background:rgba(8,59,125,.78)}
+ .prev{left:7px}.next{right:7px}
+ .controls{padding:11px 8px 13px}
+ .dot{width:10px;height:10px}
+ .help{padding:0 12px}
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header>
+  <div class="brand">법을 잘 몰라도 한눈에 이해하는 · 호봉정정과 채무부존재확인 소송</div>
+  <div class="count" id="count">1 / 8</div>
+</header>
+
+<section class="viewer" id="viewer" aria-label="카드뉴스">
+  <div class="stage" id="stage">
+    <figure class="slide active"><img src="assets/card1.webp" alt="카드 1. 어느 날 갑자기 찾아온 환수 통보"></figure>
+    <figure class="slide"><img src="assets/card2.webp" alt="카드 2. 채무부존재확인 소송"></figure>
+    <figure class="slide"><img src="assets/card3.webp" alt="카드 3. 법원의 첫 번째 질문"></figure>
+    <figure class="slide"><img src="assets/card4.webp" alt="카드 4. 중대·명백한 하자의 법적 효과"></figure>
+    <figure class="slide"><img src="assets/card5.webp" alt="카드 5. 지방재정법 제82조 5년 소멸시효"></figure>
+    <figure class="slide"><img src="assets/card6.webp" alt="카드 6. 매달 급여일마다 시효가 따로 흐릅니다"></figure>
+    <figure class="slide"><img src="assets/card7.webp" alt="카드 7. 한눈에 연결하는 핵심 4단계"></figure>
+    <figure class="slide"><img src="assets/card8.webp" alt="카드 8. 핵심 요약"></figure>
+  </div>
+  <button class="navbtn prev" id="prev" aria-label="이전 카드">‹</button>
+  <button class="navbtn next" id="next" aria-label="다음 카드">›</button>
+  <div class="controls"><div class="dots" id="dots" aria-label="카드 선택"></div></div>
+</section>
+<p class="help">버튼을 누르거나 키보드 ← →, 모바일에서는 좌우로 밀어서 넘길 수 있습니다.</p>
+<footer>전북특별자치도교육청 호봉정정 관련 이해자료 · 카드뉴스 8장</footer>
+</main>
+<script>
+(()=> {
+ const slides=[...document.querySelectorAll('.slide')];
+ const count=document.getElementById('count');
+ const dotsWrap=document.getElementById('dots');
+ let current=0, startX=null, deltaX=0;
+ const dots=slides.map((_,i)=>{
+   const b=document.createElement('button');
+   b.className='dot'+(i===0?' active':'');
+   b.setAttribute('aria-label',`${i+1}번 카드 보기`);
+   b.addEventListener('click',()=>show(i));
+   dotsWrap.appendChild(b); return b;
+ });
+ function show(n){
+   current=(n+slides.length)%slides.length;
+   slides.forEach((s,i)=>s.classList.toggle('active',i===current));
+   dots.forEach((d,i)=>d.classList.toggle('active',i===current));
+   count.textContent=`${current+1} / ${slides.length}`;
+   history.replaceState(null,'','#card-'+(current+1));
+ }
+ document.getElementById('prev').addEventListener('click',()=>show(current-1));
+ document.getElementById('next').addEventListener('click',()=>show(current+1));
+ document.addEventListener('keydown',e=>{
+   if(e.key==='ArrowLeft') show(current-1);
+   if(e.key==='ArrowRight'||e.key===' ') show(current+1);
+ });
+ const viewer=document.getElementById('viewer');
+ viewer.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;deltaX=0},{passive:true});
+ viewer.addEventListener('touchmove',e=>{if(startX!==null)deltaX=e.touches[0].clientX-startX},{passive:true});
+ viewer.addEventListener('touchend',()=>{if(Math.abs(deltaX)>45)show(current+(deltaX<0?1:-1));startX=null;deltaX=0});
+ const m=location.hash.match(/card-(\d+)/); if(m) show(Math.min(slides.length,Math.max(1,+m[1]))-1);
+})();
+</script>
+</body>
+</html>
