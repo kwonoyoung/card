@@ -3,10 +3,67 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
+<meta name="theme-color" content="#0b3f91">
 <meta name="description" content="호봉정정과 채무부존재확인 소송 카드뉴스">
 <title>호봉정정과 채무부존재확인 소송</title>
-<link rel="stylesheet" href="./styles.css">
+<style>
+:root{
+  --navy:#082e68;--blue:#0e64d9;--blue2:#1f7ae7;--sky:#eef7ff;--line:#b9dafa;
+  --ink:#10243e;--muted:#58708b;--yellow:#fff19a;--red:#e93232;--green:#168f49;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f8fbff;color:var(--ink);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Malgun Gothic",sans-serif}
+button{font:inherit}
+.app{width:100%;height:100dvh;display:grid;grid-template-rows:auto 1fr auto;background:linear-gradient(180deg,#f8fbff 0,#edf6ff 100%)}
+.topbar{height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px;background:linear-gradient(90deg,#073678,#0d58bb);color:#fff;box-shadow:0 2px 12px rgba(0,37,90,.15);z-index:20}
+.brand{font-size:clamp(13px,2vw,18px);font-weight:900;letter-spacing:-.035em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.counter{font-size:13px;font-weight:900;background:rgba(255,255,255,.16);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.viewer{position:relative;min-height:0;overflow:hidden;touch-action:pan-y}
+.track{height:100%;position:relative}
+.slide{position:absolute;inset:0;display:flex;align-items:stretch;justify-content:center;opacity:0;transform:translateX(2.8%);pointer-events:none;transition:opacity .24s ease,transform .24s ease;padding:0}
+.slide.active{opacity:1;transform:none;pointer-events:auto}
+.card{width:min(100%,1080px);height:100%;overflow:auto;padding:8px 10px 10px;display:flex;flex-direction:column;gap:7px;background:transparent}
+.hero{background:linear-gradient(135deg,#fff,#ebf6ff);border:2px solid #5da9ee;border-radius:20px;padding:12px 14px;box-shadow:0 10px 28px rgba(17,72,132,.08)}
+.hero-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:14px;align-items:center}
+.hero .tag{display:inline-block;background:var(--blue);color:#fff;padding:5px 11px;border-radius:999px;font-weight:900;font-size:12px;margin-bottom:6px}
+.hero h1{margin:0;color:#082e68;font-size:clamp(24px,4.6vw,44px);line-height:1.08;letter-spacing:-.055em}
+.hero h1 em{font-style:normal;color:#1265d7;background:linear-gradient(transparent 65%,var(--yellow) 65%)}
+.hero p{margin:6px 0 0;color:#234b80;font-size:clamp(13px,2vw,17px);font-weight:800}
+.artbox{position:relative;min-height:140px;border-radius:18px;border:1.5px solid #acd4fb;background:radial-gradient(circle at top right,#dff0ff 0,#eff7ff 46%,#ffffff 100%);overflow:hidden;display:grid;place-items:center}
+.artbox::before,.artbox::after{content:"";position:absolute;border-radius:50%;background:rgba(17,105,224,.08)}
+.artbox::before{width:110px;height:110px;left:-18px;bottom:-22px}
+.artbox::after{width:90px;height:90px;right:-10px;top:-14px}
+.artbox svg{width:min(100%,230px);height:auto;z-index:1;filter:drop-shadow(0 8px 15px rgba(17,72,132,.10))}
+.section{border:1.5px solid #77b8f5;border-radius:16px;background:linear-gradient(180deg,#fff,#f4faff);padding:10px 12px;box-shadow:0 6px 18px rgba(17,72,132,.04)}
+.row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.num{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#0c62d6,#2785ef);color:#fff;font-weight:950;font-size:14px;flex:none}
+h2{margin:1px 0 4px;color:#0a3979;font-size:clamp(16px,2.5vw,22px);line-height:1.2;letter-spacing:-.035em}
+p,li,small{font-size:clamp(12px,1.8vw,15.5px);line-height:1.42}
+p{margin:0}
+ul{margin:4px 0 0;padding-left:18px}
+.hl{color:#0d63d8;font-weight:900}.red{color:var(--red);font-weight:900}.green{color:var(--green);font-weight:900}.yellow{background:var(--yellow);font-weight:900;padding:0 3px;border-radius:4px}
+.flow{display:grid;gap:6px}.step{border:1.5px solid #73b9f4;border-radius:14px;background:#f7fbff;padding:8px 10px;display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center}.step b{display:block;color:#0a3979;margin-bottom:2px;font-size:clamp(13px,2vw,17px)}
+.arrow{text-align:center;color:#1870df;font-size:17px;font-weight:950;line-height:.7}.decision{border:2px solid #2a78de;background:#eef7ff;border-radius:16px;text-align:center;padding:9px;font-weight:900;font-size:clamp(13px,2vw,17px)}
+.branch{display:grid;grid-template-columns:1.25fr .8fr;gap:7px}.yes,.no{border-radius:13px;padding:8px;font-size:clamp(11.5px,1.7vw,14px);line-height:1.4}.yes{border:1.5px solid #58aaf0;background:#eff8ff}.no{border:1.5px solid #aaa;background:#f4f4f4;color:#555}
+.law{margin-top:5px;border:1.5px solid #d9ad1d;background:#fff7bd;border-radius:10px;padding:7px}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.good,.bad{border-radius:12px;padding:9px;font-size:clamp(12px,1.8vw,15px);line-height:1.4}.good{border:1.5px solid #42ad66;background:#effff4}.bad{border:1.5px solid #ef6767;background:#fff2f2}
+.example-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.example-box{border:1.5px solid #69b0ef;border-radius:15px;background:linear-gradient(180deg,#f7fbff,#eef7ff);padding:10px;box-shadow:0 6px 18px rgba(17,72,132,.04)}.example-box h2{margin:0 0 6px}.period{margin-top:8px;border-radius:11px;padding:8px 9px;background:#083c82;color:#fff;font-weight:900;text-align:center;font-size:clamp(13px,2vw,17px)}.rule{margin-top:7px;border-radius:10px;padding:7px 8px;background:#fff8c9;border:1px solid #e2b93e;font-size:clamp(11.5px,1.7vw,14px);line-height:1.4}.calc{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;border:1.5px solid #79baf3;border-radius:13px;background:#fff;padding:8px 9px;box-shadow:0 6px 18px rgba(17,72,132,.04)}
+.key{margin-top:auto;border:1.5px solid #dba91f;border-radius:15px;background:linear-gradient(90deg,#fff9ce,#fff1a8);padding:9px 11px;font-weight:900;font-size:clamp(13px,2vw,17px);line-height:1.35;box-shadow:0 8px 18px rgba(210,166,23,.10)}.key strong{color:#d62828}
+.nav{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:48px;height:48px;border:0;border-radius:50%;background:rgba(7,55,116,.90);color:#fff;font-size:28px;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.18)}.prev{left:7px}.next{right:7px}.nav:hover{background:#1267d8}
+.bottom{min-height:56px;background:#fff;border-top:1px solid #dceaf7;display:flex;align-items:center;gap:10px;padding:8px 12px;z-index:20;flex-wrap:wrap}.dots{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.dot{width:10px;height:10px;border:0;border-radius:50%;padding:0;background:#c7d8ea;cursor:pointer;transition:.18s}.dot.on{background:#1267d8;transform:scale(1.25)}.label{color:#5f7590;font-size:12px;font-weight:700}.credit{margin-left:auto;color:#6c7f95;font-size:12px;font-weight:700;white-space:nowrap}
+@media(max-width:780px){
+  .hero-grid{grid-template-columns:1fr;gap:8px}.artbox{min-height:118px}.branch,.two,.example-grid{grid-template-columns:1fr}.credit{width:100%;margin-left:0;text-align:center}.bottom{justify-content:center}.label{display:none}
+}
+@media(max-width:700px){
+ .topbar{height:42px;padding:0 9px}.brand{font-size:12.5px}.counter{font-size:11px;padding:4px 7px}
+ .card{padding:5px 6px 7px;gap:5px}.section{padding:8px 9px;border-radius:12px}.hero{padding:8px 8px}.hero h1{font-size:clamp(22px,7.1vw,36px)}.row{gap:6px}.num{width:29px;height:29px;font-size:12px}
+ h2{font-size:clamp(14px,4.4vw,19px)}p,li,small{font-size:clamp(11.2px,3.35vw,14px);line-height:1.35}.step{padding:6px 7px}.yes,.no{padding:6px;font-size:10.8px}.law{padding:5px}.key{padding:7px 8px}.example-box{padding:7px}.period{padding:6px 7px}.rule{padding:6px 7px}.nav{width:38px;height:38px;font-size:23px}.prev{left:2px}.next{right:2px}.bottom{min-height:48px;padding:6px 8px}.dot{width:9px;height:9px}
+}
+@media(max-height:760px){
+ .topbar{height:38px}.card{gap:4px;padding-top:4px;padding-bottom:4px}.hero{padding:6px 8px}.hero h1{font-size:clamp(21px,4vw,34px)}.section{padding:6px 8px}.artbox{min-height:108px}p,li,small{line-height:1.3}.key{padding:6px 8px}
+}
+</style>
 </head>
 <body>
 <div class="app">
