@@ -64,6 +64,8 @@ ul{margin:4px 0 0;padding-left:18px}
 .form-tab strong{display:block;color:#0b4da2;margin-bottom:3px}
 .form-tab span{font-size:11px;line-height:1.25;color:#5d7189}
 .docs-footer{margin-top:auto;border-radius:14px;background:#082e68;color:#fff;padding:9px 11px;font-weight:800;font-size:clamp(12px,1.9vw,15px);line-height:1.4}
+.next-docs{margin-top:7px;width:100%;border:0;border-radius:14px;background:linear-gradient(90deg,#0b4da2,#1873df);color:#fff;padding:11px 14px;font-weight:900;font-size:clamp(13px,2vw,17px);cursor:pointer;box-shadow:0 8px 18px rgba(14,100,217,.18)}
+.next-docs:hover{filter:brightness(1.06)}
 @media(max-width:780px){.docs-grid{grid-template-columns:1fr}.form-tabs{grid-template-columns:1fr}}
 .key{margin-top:auto;border:1.5px solid #dba91f;border-radius:15px;background:linear-gradient(90deg,#fff9ce,#fff1a8);padding:9px 11px;font-weight:900;font-size:clamp(13px,2vw,17px);line-height:1.35;box-shadow:0 8px 18px rgba(210,166,23,.10)}.key strong{color:#d62828}
 .nav{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:48px;height:48px;border:0;border-radius:50%;background:rgba(7,55,116,.90);color:#fff;font-size:28px;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.18)}.prev{left:7px}.next{right:7px}.nav:hover{background:#1267d8}
@@ -245,6 +247,7 @@ ul{margin:4px 0 0;padding-left:18px}
           <div class="section row"><span class="num">4</span><div><p>따라서 <span class="hl">최근 5년분 급여는 환수될 수 있고</span>, 5년을 초과한 부분은 소멸시효 완성으로 채무가 없다고 다툴 수 있습니다.</p></div></div>
           <div class="section row" style="border-color:#ef6a6a;background:#fff5f0"><span class="num" style="background:#e93434">!</span><div><h2 class="red">주의</h2><p>모든 호봉정정 사건이 자동으로 최근 5년 환수로 정리되는 것은 아니며, <span class="red">‘중대·명백한 하자’ 인정 여부가 중요</span>합니다.</p></div></div>
           <div class="key">💡 이 소송은 ‘전부 면제’를 구하는 것이 아니라, <strong>‘법적으로 남는 진짜 채무만 확정하자’</strong>는 소송입니다.</div>
+          <button class="next-docs" type="button" data-go-page="11">다음 페이지 ▶ 정책협의회 결과 안내 · 과오지급금 환수 예정 통지서등 보기</button>
         </div>
       </article>
 
@@ -341,12 +344,20 @@ ul{margin:4px 0 0;padding-left:18px}
  const dots=slides.map((_,i)=>{const b=document.createElement('button');b.className='dot'+(i===0?' on':'');b.setAttribute('aria-label',(i===0?'전체 구조':'카드 '+i)+' 보기');b.onclick=()=>show(i);dotsWrap.appendChild(b);return b});
  function title(i){return i===0?'전체 구조':(i===10?'관련 문서':'카드 '+i)}
  function show(n){current=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===current));dots.forEach((d,i)=>d.classList.toggle('on',i===current));counter.textContent=title(current)+' · '+(current+1)+' / '+slides.length;history.replaceState(null,'','#page-'+(current+1));slides[current].scrollTop=0}
- document.getElementById('prev').onclick=()=>show(current-1); document.getElementById('next').onclick=()=>show(current+1);
+ document.getElementById('prev').onclick=()=>show(current-1);
+ document.getElementById('next').onclick=()=>show(current+1);
+ document.querySelectorAll('[data-go-page]').forEach(btn=>{
+   btn.addEventListener('click',()=>show(Math.max(0,Math.min(slides.length-1,Number(btn.dataset.goPage)-1))));
+ });
  document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')show(current-1); if(e.key==='ArrowRight'||e.key===' ')show(current+1)});
  const v=document.getElementById('viewer');
  v.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;dx=0},{passive:true});
  v.addEventListener('touchmove',e=>{if(sx!==null)dx=e.touches[0].clientX-sx},{passive:true});
  v.addEventListener('touchend',()=>{if(Math.abs(dx)>42)show(current+(dx<0?1:-1));sx=null;dx=0});
+ window.addEventListener('hashchange',()=>{
+   const hm=location.hash.match(/page-(\d+)/);
+   if(hm) show(Math.min(slides.length,Math.max(1,+hm[1]))-1);
+ });
  const m=location.hash.match(/page-(\d+)/);
  if(m){
    show(Math.min(slides.length,Math.max(1,+m[1]))-1);
