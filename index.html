@@ -49,6 +49,22 @@ ul{margin:4px 0 0;padding-left:18px}
 .law{margin-top:5px;border:1.5px solid #d9ad1d;background:#fff7bd;border-radius:10px;padding:7px}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .good,.bad{border-radius:12px;padding:9px;font-size:clamp(12px,1.8vw,15px);line-height:1.4}.good{border:1.5px solid #42ad66;background:#effff4}.bad{border:1.5px solid #ef6767;background:#fff2f2}
 .example-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.example-box{border:1.5px solid #69b0ef;border-radius:15px;background:linear-gradient(180deg,#f7fbff,#eef7ff);padding:10px;box-shadow:0 6px 18px rgba(17,72,132,.04)}.example-box h2{margin:0 0 6px}.period{margin-top:8px;border-radius:11px;padding:8px 9px;background:#083c82;color:#fff;font-weight:900;text-align:center;font-size:clamp(13px,2vw,17px)}.rule{margin-top:7px;border-radius:10px;padding:7px 8px;background:#fff8c9;border:1px solid #e2b93e;font-size:clamp(11.5px,1.7vw,14px);line-height:1.4}.calc{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center;border:1.5px solid #79baf3;border-radius:13px;background:#fff;padding:8px 9px;box-shadow:0 6px 18px rgba(17,72,132,.04)}
+.docs-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.doc-card{border:1.5px solid #79baf3;border-radius:18px;background:linear-gradient(180deg,#fff,#f5faff);padding:12px;box-shadow:0 8px 22px rgba(17,72,132,.06)}
+.doc-head{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.doc-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#0e64d9,#2585ef);display:grid;place-items:center;color:white;font-size:22px;flex:none}
+.doc-title{font-size:clamp(15px,2.2vw,20px);font-weight:900;line-height:1.25;color:#0a3979}
+.doc-sub{margin-top:2px;color:#69809a;font-size:12px;font-weight:700}
+.doc-flow{display:grid;gap:5px;margin-top:8px}
+.doc-step{border-radius:10px;background:#eef7ff;border:1px solid #c7e1fa;padding:7px 8px;font-size:clamp(11.5px,1.7vw,14px);line-height:1.38}
+.doc-step b{color:#0d63d8}
+.doc-note{margin-top:8px;background:#fff7c5;border:1px solid #e2bd46;border-radius:10px;padding:7px 8px;font-size:clamp(11.5px,1.7vw,14px);line-height:1.38}
+.form-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.form-tab{border-radius:10px;background:#fff;border:1px solid #c7def5;padding:7px;text-align:center}
+.form-tab strong{display:block;color:#0b4da2;margin-bottom:3px}
+.form-tab span{font-size:11px;line-height:1.25;color:#5d7189}
+.docs-footer{margin-top:auto;border-radius:14px;background:#082e68;color:#fff;padding:9px 11px;font-weight:800;font-size:clamp(12px,1.9vw,15px);line-height:1.4}
+@media(max-width:780px){.docs-grid{grid-template-columns:1fr}.form-tabs{grid-template-columns:1fr}}
 .key{margin-top:auto;border:1.5px solid #dba91f;border-radius:15px;background:linear-gradient(90deg,#fff9ce,#fff1a8);padding:9px 11px;font-weight:900;font-size:clamp(13px,2vw,17px);line-height:1.35;box-shadow:0 8px 18px rgba(210,166,23,.10)}.key strong{color:#d62828}
 .nav{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:48px;height:48px;border:0;border-radius:50%;background:rgba(7,55,116,.90);color:#fff;font-size:28px;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.18)}.prev{left:7px}.next{right:7px}.nav:hover{background:#1267d8}
 .bottom{min-height:56px;background:#fff;border-top:1px solid #dceaf7;display:flex;align-items:center;gap:10px;padding:8px 12px;z-index:20;flex-wrap:wrap}.dots{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.dot{width:10px;height:10px;border:0;border-radius:50%;padding:0;background:#c7d8ea;cursor:pointer;transition:.18s}.dot.on{background:#1267d8;transform:scale(1.25)}.label{color:#5f7590;font-size:12px;font-weight:700}.credit{margin-left:auto;color:#6c7f95;font-size:12px;font-weight:700;white-space:nowrap}
@@ -69,7 +85,7 @@ ul{margin:4px 0 0;padding-left:18px}
 <div class="app">
   <header class="topbar">
     <div class="brand">호봉정정 · 채무부존재확인 소송</div>
-    <div class="counter" id="counter">전체 구조 · 1 / 10</div>
+    <div class="counter" id="counter">전체 구조 · 1 / 11</div>
   </header>
 
   <main class="viewer" id="viewer">
@@ -232,6 +248,79 @@ ul{margin:4px 0 0;padding-left:18px}
         </div>
       </article>
 
+      <article class="slide">
+        <div class="card">
+          <div class="hero">
+            <div class="hero-grid">
+              <div>
+                <span class="tag">관련 문서</span>
+                <h1>호봉정정 업무에 바로 쓰는 <em>2개 문서</em></h1>
+                <p>정책협의회 결과 + 과오지급금 환수 통지·납부 서식</p>
+              </div>
+              <div class="artbox">
+                <svg viewBox="0 0 240 160" aria-hidden="true">
+                  <rect x="34" y="22" width="72" height="104" rx="10" fill="#fff" stroke="#1a6cde" stroke-width="4"/>
+                  <line x1="49" y1="48" x2="91" y2="48" stroke="#b0ccef" stroke-width="6"/>
+                  <line x1="49" y1="66" x2="91" y2="66" stroke="#b0ccef" stroke-width="6"/>
+                  <line x1="49" y1="84" x2="91" y2="84" stroke="#b0ccef" stroke-width="6"/>
+                  <rect x="132" y="34" width="72" height="92" rx="10" fill="#eaf5ff" stroke="#5aa3ef" stroke-width="4"/>
+                  <path d="M148 58h40M148 76h40M148 94h28" stroke="#8ab9ed" stroke-width="6"/>
+                  <path d="M108 78h18" stroke="#0e64d9" stroke-width="7" stroke-linecap="round"/>
+                  <path d="M120 68l12 10-12 10" fill="none" stroke="#0e64d9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="192" cy="126" r="18" fill="#ffd24d"/>
+                  <path d="M184 126l6 6 11-13" fill="none" stroke="#0a6b38" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="docs-grid">
+            <section class="doc-card">
+              <div class="doc-head">
+                <div class="doc-icon">①</div>
+                <div>
+                  <div class="doc-title">정책협의회 결과 안내</div>
+                  <div class="doc-sub">호봉정정시 업무처리 개선 방안</div>
+                </div>
+              </div>
+              <div class="doc-flow">
+                <div class="doc-step"><b>정정 필요 확인</b> — 호봉 시행권자가 사유·근거를 명확히 확인</div>
+                <div class="doc-step"><b>당사자 의견 청취</b> — 소명 기회 부여</div>
+                <div class="doc-step"><b>중대·명백한 하자 여부 검토</b> — 법률 자문 실시</div>
+                <div class="doc-step"><b>법률검토 핵심 4가지</b><br>① 중대·명백한 하자인지<br>② 현행 지침 미개정 상태에서 판례 적용 가능한지<br>③ 5년 소멸시효 적용 환수가 적법한지<br>④ 향후 감사·소송상 문제가 없는지</div>
+                <div class="doc-step"><b>결과 통보 및 이의 신청</b> — 해당 학교 통보 → 교원 확인 → 이의 없으면 급여 반영</div>
+              </div>
+              <div class="doc-note">핵심: <b>호봉 담당자가 법적 성격과 환수범위를 먼저 검토</b>하고, 그 결과를 급여 업무에 반영하는 구조입니다.</div>
+            </section>
+
+            <section class="doc-card">
+              <div class="doc-head">
+                <div class="doc-icon">②</div>
+                <div>
+                  <div class="doc-title">과오지급금 환수 통지서등</div>
+                  <div class="doc-sub">예정 통지 → 반환·납부 요청 → 독촉</div>
+                </div>
+              </div>
+
+              <div class="form-tabs">
+                <div class="form-tab"><strong>예시 1</strong><span>과오지급금 발생 및 환수 예정 통지</span></div>
+                <div class="form-tab"><strong>예시 2</strong><span>과오지급금 반환 및 납부 요청</span></div>
+                <div class="form-tab"><strong>예시 3</strong><span>과오지급금 반환 독촉</span></div>
+              </div>
+
+              <div class="doc-flow">
+                <div class="doc-step"><b>예정 통지</b> — 호봉 정정 사유, 과오지급 기간, 환수 예정 사실을 먼저 안내</div>
+                <div class="doc-step"><b>반환 및 납부 요청</b> — 최종 환수금액, 납부기한·계좌, 이의·문의 및 분할납부 협의 안내</div>
+                <div class="doc-step"><b>미납 시 독촉</b> — 미납금액과 최종 납부기한을 다시 명시하고, 후속 채권관리 절차 가능성 안내</div>
+              </div>
+              <div class="doc-note">실무 흐름을 <b>사전 안내 → 확정 금액 통지 → 미납 관리</b>로 나눠 사용할 수 있도록 구성된 3종 서식입니다.</div>
+            </section>
+          </div>
+
+          <div class="docs-footer">📄 두 문서는 서로 역할이 다릅니다. <b>첫 번째 문서</b>는 “어떻게 판단할 것인가”에 대한 기준이고, <b>두 번째 문서</b>는 판단이 끝난 뒤 “어떻게 통지·환수할 것인가”에 대한 실행 서식입니다.</div>
+        </div>
+      </article>
+
     </div>
     <button class="nav prev" id="prev" aria-label="이전 페이지">‹</button>
     <button class="nav next" id="next" aria-label="다음 페이지">›</button>
@@ -250,7 +339,7 @@ ul{margin:4px 0 0;padding-left:18px}
  const dotsWrap=document.getElementById('dots');
  let current=0,sx=null,dx=0;
  const dots=slides.map((_,i)=>{const b=document.createElement('button');b.className='dot'+(i===0?' on':'');b.setAttribute('aria-label',(i===0?'전체 구조':'카드 '+i)+' 보기');b.onclick=()=>show(i);dotsWrap.appendChild(b);return b});
- function title(i){return i===0?'전체 구조':'카드 '+i}
+ function title(i){return i===0?'전체 구조':(i===10?'관련 문서':'카드 '+i)}
  function show(n){current=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===current));dots.forEach((d,i)=>d.classList.toggle('on',i===current));counter.textContent=title(current)+' · '+(current+1)+' / '+slides.length;history.replaceState(null,'','#page-'+(current+1));slides[current].scrollTop=0}
  document.getElementById('prev').onclick=()=>show(current-1); document.getElementById('next').onclick=()=>show(current+1);
  document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')show(current-1); if(e.key==='ArrowRight'||e.key===' ')show(current+1)});
